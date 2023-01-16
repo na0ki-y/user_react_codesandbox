@@ -1,43 +1,38 @@
 import "./styles.css";
-import { useState, useCallback, useMemo } from "react";
-import { ChildArea } from "./components/ChildArea";
+import { Home } from "./components/Home";
+import { Page1 } from "./components/Page1";
+import { Page2 } from "./components/Page2";
+import { Count } from "./components/Count";
+import { Page1DeA } from "./components/Page1DeA";
+import { Page1DeB } from "./components/Page1DeB";
 
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+
+// import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 export default function App() {
-  const [num, setNum] = useState(0);
-  const [intext, setText] = useState("");
-  const [flagOpen, setflagOpen] = useState(false);
-
-  const onChangeText = (event) => {
-    setText(event.target.input);
-  };
-  const onClickOpen = (event) => {
-    setflagOpen(!flagOpen);
-  };
-  const onClickClose = useCallback((event) => {
-    setflagOpen(false);
-  }, []);
-  const tmp = useMemo(() => 1 + 2, []); //一回だけ計算
-  console.log(tmp);
-  //再生成しないのでから
   return (
-    <div className="App">
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
-      <button
-        onClick={() => {
-          setNum(num + 1);
-        }}
-      >
-        CountUp
-      </button>
-      <p>{num}</p>
-      <br />
-      <br />
-      <input value={intext} onChange={onChangeText} />
-      <br />
-      <br />
-      <button onClick={onClickOpen}>表示</button>
-      <ChildArea flagOpen={flagOpen} onClickClose={onClickClose} />
-    </div>
+    <Router>
+      <div className="App">
+        <Link to="/">Homeへ</Link>
+        <br />
+        <Link to="/p1">Page1へ</Link>
+        <br />
+        <Link to="/p2">Page2へ</Link>
+        <br />
+        <Link to="/count">Countへ</Link>
+        <br />
+      </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="p1" element={<Page1 />}>
+          <Route path="dda" element={<Page1DeA />} />
+          <Route path="ddb" element={<Page1DeB />} />
+        </Route>
+        <Route path="p2" element={<Page2 />} />
+        <Route path="p2/ddb" element={<Page1DeB />} />
+
+        <Route path="count" element={<Count />} />
+      </Routes>
+    </Router>
   );
 }
