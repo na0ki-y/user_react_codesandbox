@@ -10,7 +10,11 @@ import { Page1DeB } from "./components/Page1DeB";
 import { Page2 } from "./components/Page2";
 import { Count } from "./components/Count";
 import { Post } from "./components/Post";
+import { CssPrac } from "./components/CssPrac";
+
 import { NotFound } from "./components/NotFound";
+import { Inline } from "./components/Inline";
+import { CssModule } from "./components/CssModule";
 
 // import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 //extractいらない
@@ -30,6 +34,8 @@ export default function App() {
         <br />
         <Link to="/count">Countへ</Link>
         <br />
+        <Link to="/css">CssPracへ</Link>
+        <br />
       </div>
       <Routes>
         <Route path="*" element={<NotFound />} />
@@ -44,6 +50,10 @@ export default function App() {
         </Route>
 
         <Route path="count" element={<Count />} />
+        <Route path="css" element={<CssPrac />}>
+          <Route path="inline" element={<Inline />} />
+          <Route path="cssModlue" element={<CssModule />} />
+        </Route>
       </Routes>
     </Router>
   );
