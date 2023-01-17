@@ -9,6 +9,9 @@ import { Page1DeB } from "./components/Page1DeB";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 
 // import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+//　/p1スラッシュいらない
+//Note that in your path props we don't write /about and instead write about. The forward slash / in path names is implicit in React Router 6.
+//https://dev.to/tywenk/how-to-use-nested-routes-in-react-router-6-4jhd
 export default function App() {
   return (
     <Router>
